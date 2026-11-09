@@ -515,6 +515,8 @@ GameObject:
   - component: {fileID: 7793356545727436762}
   - component: {fileID: 4299399627359983724}
   - component: {fileID: 2055156853771909035}
+  - component: {fileID: 8163791461615062565}
+  - component: {fileID: 6604185425224473901}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -651,6 +653,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b620b19ce06c346910cc27b736cbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Vyrden.Items::Vyrden.Items.CharacterStats
+  _baseStats: {fileID: 11400000, guid: 2f02a2192ec79b84ba6ba4518b00b042, type: 2}
   _health: {fileID: 0}
   _motor: {fileID: 0}
   _weapon: {fileID: 0}
+  _armor: {fileID: 0}
+--- !u!114 &8163791461615062565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b804f086f05a9df4f9577e1caa4a5a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Combat::Vyrden.Combat.ArmorDamageModifier
+  _armor: 0
+--- !u!114 &6604185425224473901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df9a257f523fe48b9b25c6d4442d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Items::Vyrden.Items.ItemStatApplier
+  _stats: {fileID: 0}

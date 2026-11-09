@@ -513,6 +513,8 @@ GameObject:
   - component: {fileID: 4264818552203412287}
   - component: {fileID: 6594403403344117406}
   - component: {fileID: 7793356545727436762}
+  - component: {fileID: 4299399627359983724}
+  - component: {fileID: 2055156853771909035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -625,3 +627,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Vyrden.Combat::Vyrden.Combat.TeamMember
   _team: 1
+--- !u!114 &4299399627359983724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634bd862f548f4f40a11b8fd2bfbb261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Items::Vyrden.Items.Inventory
+--- !u!114 &2055156853771909035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b620b19ce06c346910cc27b736cbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Items::Vyrden.Items.CharacterStats
+  _health: {fileID: 0}
+  _motor: {fileID: 0}
+  _weapon: {fileID: 0}

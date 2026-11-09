@@ -22,6 +22,7 @@ namespace Vyrden.Movement
         private float _jumpBufferTimer;
         private bool _isGrounded;
         private Vector3 _groundNormal = Vector3.up;
+        private float _speedMultiplier = 1f;
 
         /// <summary>Raised when the character leaves the ground by jumping.</summary>
         public event Action Jumped;
@@ -33,6 +34,13 @@ namespace Vyrden.Movement
         public bool IsSprinting => _intent.Sprint && _horizontalVelocity.sqrMagnitude > MinMoveSqr;
         public Vector3 Velocity => _horizontalVelocity + Vector3.up * _verticalVelocity;
         public CharacterMotorSettings Settings => _settings;
+        public float SpeedMultiplier => _speedMultiplier;
+
+        /// <summary>Scales walk and sprint speed (items, buffs, slows). 1 = settings speed.</summary>
+        public void SetSpeedMultiplier(float multiplier)
+        {
+            _speedMultiplier = Mathf.Max(0f, multiplier);
+        }
 
         private void Awake()
         {
@@ -122,7 +130,7 @@ namespace Vyrden.Movement
         private void UpdateHorizontalVelocity(float deltaTime)
         {
             bool hasInput = _intent.MoveDirection.sqrMagnitude > MinMoveSqr;
-            float speed = _intent.Sprint ? _settings.SprintSpeed : _settings.WalkSpeed;
+            float speed = (_intent.Sprint ? _settings.SprintSpeed : _settings.WalkSpeed) * _speedMultiplier;
             Vector3 targetVelocity = _intent.MoveDirection * speed;
 
             float rate = hasInput ? _settings.Acceleration : _settings.Deceleration;

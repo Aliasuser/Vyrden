@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vyrden.Combat;
+using Vyrden.Movement;
 
 namespace Vyrden.Player
 {

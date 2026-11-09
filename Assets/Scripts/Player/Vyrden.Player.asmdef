@@ -3,7 +3,8 @@
     "rootNamespace": "Vyrden.Player",
     "references": [
         "Unity.InputSystem",
-        "Vyrden.Combat"
+        "Vyrden.Combat",
+        "Vyrden.Movement"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

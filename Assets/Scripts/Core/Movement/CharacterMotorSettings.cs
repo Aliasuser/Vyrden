@@ -1,11 +1,11 @@
 using UnityEngine;
 
-namespace Vyrden.Player
+namespace Vyrden.Movement
 {
     /// <summary>
     /// Tuning data for <see cref="CharacterMotor"/>. Shared asset so several characters can use one profile.
     /// </summary>
-    [CreateAssetMenu(fileName = "CharacterMotorSettings", menuName = "Vyrden/Character Motor Settings")]
+    [CreateAssetMenu(fileName = "CharacterMotorSettings", menuName = "Vyrden/Movement/Character Motor Settings")]
     public class CharacterMotorSettings : ScriptableObject
     {
         [Header("Speed")]

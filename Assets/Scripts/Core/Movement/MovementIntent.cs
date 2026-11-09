@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Vyrden.Player
+namespace Vyrden.Movement
 {
     /// <summary>
     /// What a character wants to do this frame, independent of where the request came from

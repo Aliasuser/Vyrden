@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Vyrden.Player
+namespace Vyrden.Movement
 {
     /// <summary>
     /// Moves a character with a <see cref="CharacterController"/> based on a <see cref="MovementIntent"/>.

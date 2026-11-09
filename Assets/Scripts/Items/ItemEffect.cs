@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Vyrden.Stats;
 
 namespace Vyrden.Items
 {
@@ -8,8 +10,8 @@ namespace Vyrden.Items
     /// </summary>
     public abstract class ItemEffect : ScriptableObject
     {
-        /// <summary>Adds this effect's stat modifiers for the given number of copies.</summary>
-        public virtual void CollectStatModifiers(int stacks, StatModifierBuffer buffer)
+        /// <summary>Adds this effect's stat modifiers for the given number of copies to <paramref name="output"/>.</summary>
+        public virtual void CollectStatModifiers(int stacks, List<StatModifier> output, object source)
         {
         }
     }

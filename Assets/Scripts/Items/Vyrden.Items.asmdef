@@ -3,7 +3,8 @@
     "rootNamespace": "Vyrden.Items",
     "references": [
         "Vyrden.Combat",
-        "Vyrden.Movement"
+        "Vyrden.Movement",
+        "Vyrden.Stats"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

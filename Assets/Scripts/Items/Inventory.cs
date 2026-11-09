@@ -6,7 +6,7 @@ namespace Vyrden.Items
 {
     /// <summary>
     /// What items a character holds and how many of each. Only records collection; effects are applied by
-    /// whoever listens (e.g. <see cref="CharacterStats"/>). <see cref="AddItem"/> and <see cref="RemoveItem"/>
+    /// whoever listens (e.g. <see cref="ItemStatApplier"/>). <see cref="AddItem"/> and <see cref="RemoveItem"/>
     /// are the single entry points for changing it (host-only in multiplayer later).
     /// </summary>
     public class Inventory : MonoBehaviour

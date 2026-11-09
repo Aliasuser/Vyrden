@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Vyrden.Stats;
 
 namespace Vyrden.Items
 {
@@ -8,7 +10,7 @@ namespace Vyrden.Items
     {
         [SerializeField] private StatType _stat = StatType.MaxHealth;
         [SerializeField] private StatModifierType _modifierType = StatModifierType.Flat;
-        [Tooltip("Flat: units per copy (e.g. 25 health). Percent: fraction per copy (0.1 = +10%).")]
+        [Tooltip("Flat: units per copy (e.g. 25 health). Percent types: fraction per copy (0.1 = +10%).")]
         [SerializeField] private float _valuePerStack = 1f;
         [SerializeField] private StackingRule _stacking = StackingRule.Linear;
 
@@ -17,9 +19,15 @@ namespace Vyrden.Items
         public float ValuePerStack => _valuePerStack;
         public StackingRule Stacking => _stacking;
 
-        public override void CollectStatModifiers(int stacks, StatModifierBuffer buffer)
+        public override void CollectStatModifiers(int stacks, List<StatModifier> output, object source)
         {
-            buffer.Add(_stat, _modifierType, StackingCalculator.Evaluate(_stacking, _valuePerStack, stacks));
+            if (stacks <= 0)
+            {
+                return;
+            }
+
+            float value = StackingCalculator.Evaluate(_stacking, _valuePerStack, stacks);
+            output.Add(new StatModifier(_stat, _modifierType, value, source));
         }
     }
 }

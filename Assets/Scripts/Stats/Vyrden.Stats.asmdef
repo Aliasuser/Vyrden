@@ -1,0 +1,17 @@
+{
+    "name": "Vyrden.Stats",
+    "rootNamespace": "Vyrden.Stats",
+    "references": [
+        "Vyrden.Combat",
+        "Vyrden.Movement"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

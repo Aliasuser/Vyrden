@@ -22,6 +22,7 @@ namespace Vyrden.Combat
         private Ray _aimRay;
         private float _nextFireTime;
         private float _damageMultiplier = 1f;
+        private float _fireRateMultiplier = 1f;
 
         /// <summary>Raised after every shot, hit or miss.</summary>
         public event Action<ShotResult> Fired;
@@ -70,6 +71,14 @@ namespace Vyrden.Combat
             _damageMultiplier = Mathf.Max(0f, multiplier);
         }
 
+        /// <summary>Attack speed from items or buffs. 2 = twice as many shots per second.</summary>
+        public void SetFireRateMultiplier(float multiplier)
+        {
+            _fireRateMultiplier = Mathf.Max(0.01f, multiplier);
+        }
+
+        public float FireRateMultiplier => _fireRateMultiplier;
+
         private void Update()
         {
             bool wantsToFire = _definition.IsAutomatic ? _triggerHeld : _triggerPressed;
@@ -84,7 +93,7 @@ namespace Vyrden.Combat
         private void Fire()
         {
             // Keep a steady cadence while held, but don't bank shots after a pause.
-            float cooldown = _definition.FireCooldown;
+            float cooldown = _definition.FireCooldown / _fireRateMultiplier;
             if (Time.time - _nextFireTime > cooldown)
             {
                 _nextFireTime = Time.time;

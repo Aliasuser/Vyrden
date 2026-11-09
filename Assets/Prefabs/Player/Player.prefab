@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 3581335330730748432}
   - component: {fileID: 9210825245816702244}
   - component: {fileID: 4264818552203412287}
+  - component: {fileID: 6594403403344117406}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -307,3 +308,16 @@ MonoBehaviour:
   _motor: {fileID: 9210825245816702244}
   _camera: {fileID: 0}
   _lockCursor: 1
+--- !u!114 &6594403403344117406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e1f09556727d54a8b1dc7aaad1d572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Combat::Vyrden.Combat.Health
+  _maxHealth: 100

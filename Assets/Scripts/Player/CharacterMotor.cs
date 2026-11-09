@@ -51,6 +51,7 @@ namespace Vyrden.Player
             _intent = intent;
             _intent.MoveDirection.y = 0f;
             _intent.MoveDirection = Vector3.ClampMagnitude(_intent.MoveDirection, 1f);
+            _intent.FaceDirection.y = 0f;
 
             if (intent.JumpRequested)
             {
@@ -159,12 +160,13 @@ namespace Vyrden.Player
 
         private void UpdateRotation(float deltaTime)
         {
-            if (_intent.MoveDirection.sqrMagnitude <= MinMoveSqr)
+            Vector3 facing = _intent.FaceDirection.sqrMagnitude > MinMoveSqr ? _intent.FaceDirection : _intent.MoveDirection;
+            if (facing.sqrMagnitude <= MinMoveSqr)
             {
                 return;
             }
 
-            Quaternion targetRotation = Quaternion.LookRotation(_intent.MoveDirection.normalized, Vector3.up);
+            Quaternion targetRotation = Quaternion.LookRotation(facing.normalized, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _settings.TurnSpeed * deltaTime);
         }
 

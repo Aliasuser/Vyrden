@@ -16,5 +16,11 @@ namespace Vyrden.Player
 
         /// <summary>True on the frame a jump was requested.</summary>
         public bool JumpRequested;
+
+        /// <summary>
+        /// World-space direction the character should face (e.g. while aiming).
+        /// Zero means face the movement direction.
+        /// </summary>
+        public Vector3 FaceDirection;
     }
 }

@@ -27,6 +27,8 @@ namespace Vyrden.Player
         [Header("Follow")]
         [Tooltip("Seconds to catch up with the target. 0 = locked to target.")]
         [SerializeField, Min(0f)] private float _followSmoothTime = 0.05f;
+        [Tooltip("Sideways offset so the character doesn't cover the crosshair. Positive = over the right shoulder.")]
+        [SerializeField] private float _shoulderOffset = 0.6f;
 
         [Header("Collision")]
         [SerializeField, Min(0f)] private float _collisionRadius = 0.25f;
@@ -50,6 +52,9 @@ namespace Vyrden.Player
 
         /// <summary>Camera right flattened onto the ground plane.</summary>
         public Vector3 PlanarRight => Quaternion.Euler(0f, _yaw, 0f) * Vector3.right;
+
+        /// <summary>Ray from the camera through the screen centre (the crosshair).</summary>
+        public Ray AimRay => new Ray(transform.position, transform.forward);
 
         private void Start()
         {
@@ -109,20 +114,31 @@ namespace Vyrden.Player
             Quaternion rotation = Quaternion.Euler(_pitch, _yaw, 0f);
             Vector3 back = rotation * Vector3.back;
 
-            float allowedDistance = GetUnobstructedDistance(back);
+            // Shift the pivot sideways, pulled in if a wall is beside the character.
+            Vector3 right = rotation * Vector3.right;
+            float side = Mathf.Sign(_shoulderOffset);
+            float sideDistance = GetUnobstructedDistance(_focusPoint, right * side, Mathf.Abs(_shoulderOffset));
+            Vector3 pivot = _focusPoint + right * (side * sideDistance);
+
+            float allowedDistance = GetUnobstructedDistance(pivot, back, _followDistance);
             _currentDistance = allowedDistance < _currentDistance
                 ? allowedDistance
                 : Mathf.MoveTowards(_currentDistance, allowedDistance, _distanceRecoverySpeed * Time.deltaTime);
 
-            transform.SetPositionAndRotation(_focusPoint + back * _currentDistance, rotation);
+            transform.SetPositionAndRotation(pivot + back * _currentDistance, rotation);
         }
 
-        private float GetUnobstructedDistance(Vector3 direction)
+        private float GetUnobstructedDistance(Vector3 origin, Vector3 direction, float maxDistance)
         {
-            int count = Physics.SphereCastNonAlloc(_focusPoint, _collisionRadius, direction, _hits, _followDistance,
+            if (maxDistance <= 0f)
+            {
+                return 0f;
+            }
+
+            int count = Physics.SphereCastNonAlloc(origin, _collisionRadius, direction, _hits, maxDistance,
                 _collisionLayers, QueryTriggerInteraction.Ignore);
 
-            float closest = _followDistance;
+            float closest = maxDistance;
             Transform targetRoot = _target.root;
 
             for (int i = 0; i < count; i++)

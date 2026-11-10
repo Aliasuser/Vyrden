@@ -3,7 +3,8 @@
     "rootNamespace": "Vyrden.Enemies",
     "references": [
         "Vyrden.Combat",
-        "Vyrden.Movement"
+        "Vyrden.Movement",
+        "Vyrden.Progression"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

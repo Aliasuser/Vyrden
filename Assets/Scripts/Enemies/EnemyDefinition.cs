@@ -28,6 +28,10 @@ namespace Vyrden.Enemies
         [Tooltip("Time the enemy stands still after an attack.")]
         [SerializeField, Min(0f)] private float _recoverDuration = 0.6f;
 
+        [Header("Rewards")]
+        [Tooltip("Experience given to whoever lands the killing blow.")]
+        [SerializeField, Min(0f)] private float _experienceReward = 10f;
+
         [Header("Death")]
         [Tooltip("Seconds the body stays before being removed.")]
         [SerializeField, Min(0f)] private float _corpseDuration = 3f;
@@ -42,6 +46,7 @@ namespace Vyrden.Enemies
         public float AttackCooldown => _attackCooldown;
         public float AttackWindup => _attackWindup;
         public float RecoverDuration => _recoverDuration;
+        public float ExperienceReward => _experienceReward;
         public float CorpseDuration => _corpseDuration;
     }
 }

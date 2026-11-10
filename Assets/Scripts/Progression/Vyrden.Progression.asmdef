@@ -2,6 +2,8 @@
     "name": "Vyrden.Progression",
     "rootNamespace": "Vyrden.Progression",
     "references": [
+        "Vyrden.Combat",
+        "Vyrden.Core",
         "Vyrden.Stats"
     ],
     "includePlatforms": [],

@@ -32,6 +32,8 @@ namespace Vyrden.Enemies
         private System.Random _random;
         private float _timer;
         private bool _isSpawning;
+        private float _intervalMultiplier = 1f;
+        private int _maxActiveBonus;
 
         /// <summary>Raised after an enemy is created and registered.</summary>
         public event Action<GameObject> EnemySpawned;
@@ -43,6 +45,12 @@ namespace Vyrden.Enemies
         public IReadOnlyList<GameObject> ActiveEnemies => _activeEnemies;
         public int ActiveCount => _activeEnemies.Count;
         public bool IsSpawning => _isSpawning;
+
+        /// <summary>Base interval from the settings after the current difficulty multiplier.</summary>
+        public float CurrentSpawnInterval => _settings != null ? _settings.SpawnInterval * _intervalMultiplier : 0f;
+
+        /// <summary>Max active enemies from the settings plus the current difficulty bonus.</summary>
+        public int CurrentMaxActive => _settings != null ? _settings.MaxActiveEnemies + _maxActiveBonus : 0;
 
         private void Awake()
         {
@@ -86,6 +94,16 @@ namespace Vyrden.Enemies
             _settings = settings;
         }
 
+        /// <summary>
+        /// Scales spawning without touching the settings asset. Set by whoever owns difficulty; a new
+        /// interval takes effect from the next spawn, so changes are gradual.
+        /// </summary>
+        public void SetSpawnModifiers(float intervalMultiplier, int maxActiveBonus)
+        {
+            _intervalMultiplier = Mathf.Max(0.01f, intervalMultiplier);
+            _maxActiveBonus = Mathf.Max(0, maxActiveBonus);
+        }
+
         private void Update()
         {
             if (!_isSpawning)
@@ -94,13 +112,13 @@ namespace Vyrden.Enemies
             }
 
             _timer -= Time.deltaTime;
-            if (_timer > 0f || _activeEnemies.Count >= _settings.MaxActiveEnemies)
+            if (_timer > 0f || _activeEnemies.Count >= CurrentMaxActive)
             {
                 // At the limit the timer stays expired, so the next enemy comes as soon as a slot frees up.
                 return;
             }
 
-            _timer = TrySpawn(out _) ? _settings.SpawnInterval : _settings.RetryDelay;
+            _timer = TrySpawn(out _) ? CurrentSpawnInterval : _settings.RetryDelay;
         }
 
         /// <summary>
@@ -110,7 +128,7 @@ namespace Vyrden.Enemies
         public bool TrySpawn(out GameObject enemy)
         {
             enemy = null;
-            if (_settings == null || _locations.Count == 0 || _activeEnemies.Count >= _settings.MaxActiveEnemies)
+            if (_settings == null || _locations.Count == 0 || _activeEnemies.Count >= CurrentMaxActive)
             {
                 return false;
             }

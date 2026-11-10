@@ -15,10 +15,14 @@ namespace Vyrden.Enemies
         [SerializeField] private MeleeAttack _attack;
 
         private Health _health;
+        private float _healthMultiplier = 1f;
+        private float _damageMultiplier = 1f;
 
         public EnemyDefinition Definition => _definition;
         public Health Health => _health != null ? _health : _health = GetComponent<Health>();
         public MeleeAttack Attack => _attack;
+        public float HealthMultiplier => _healthMultiplier;
+        public float DamageMultiplier => _damageMultiplier;
 
         private void Awake()
         {
@@ -33,12 +37,31 @@ namespace Vyrden.Enemies
                 return;
             }
 
-            Health.SetMaxHealth(_definition.MaxHealth);
+            ApplyDefinition();
+        }
+
+        /// <summary>
+        /// Scales health and attack damage from the definition (difficulty, elites later). Meant for a freshly
+        /// spawned enemy: health is refilled to the new maximum. Multipliers are not cumulative.
+        /// </summary>
+        public void ApplyStatMultipliers(float healthMultiplier, float damageMultiplier)
+        {
+            _healthMultiplier = Mathf.Max(0.01f, healthMultiplier);
+            _damageMultiplier = Mathf.Max(0f, damageMultiplier);
+            if (_definition != null && Health.IsAlive)
+            {
+                ApplyDefinition();
+            }
+        }
+
+        private void ApplyDefinition()
+        {
+            Health.SetMaxHealth(_definition.MaxHealth * _healthMultiplier);
             Health.ResetHealth();
 
             if (_attack != null)
             {
-                _attack.Configure(_definition.AttackDamage, _definition.AttackRange,
+                _attack.Configure(_definition.AttackDamage * _damageMultiplier, _definition.AttackRange,
                     _definition.AttackCooldown, _definition.AttackWindup);
             }
         }

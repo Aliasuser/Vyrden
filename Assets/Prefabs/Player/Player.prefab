@@ -519,6 +519,7 @@ GameObject:
   - component: {fileID: 6604185425224473901}
   - component: {fileID: 4344955296912593205}
   - component: {fileID: 8492222275906092354}
+  - component: {fileID: 6342348286505760998}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -601,9 +602,11 @@ MonoBehaviour:
   _jumpActionName: Jump
   _sprintActionName: Sprint
   _attackActionName: Attack
+  _interactActionName: Interact
   _motor: {fileID: 9210825245816702244}
   _camera: {fileID: 0}
   _weapon: {fileID: 0}
+  _interactor: {fileID: 0}
   _lockCursor: 1
 --- !u!114 &6594403403344117406
 MonoBehaviour:
@@ -714,3 +717,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.LevelStatApplier
   _growth: {fileID: 11400000, guid: c9045627bf8a9994b8c4fe019b21a408, type: 2}
   _stats: {fileID: 0}
+--- !u!114 &6342348286505760998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c870213d3bc8e4a8578021f9ac708b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Player::Vyrden.Player.PlayerInteractor
+  _range: 3
+  _scanInterval: 0.1
+  _layers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _origin: {fileID: 0}

@@ -4,6 +4,7 @@
     "references": [
         "Unity.InputSystem",
         "Vyrden.Combat",
+        "Vyrden.Core",
         "Vyrden.Movement"
     ],
     "includePlatforms": [],

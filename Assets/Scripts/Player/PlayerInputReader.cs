@@ -7,7 +7,8 @@ namespace Vyrden.Player
 {
     /// <summary>
     /// The only player script that touches the Input System. Turns input into a <see cref="MovementIntent"/>
-    /// for the motor, look input for the camera and trigger/aim input for the weapon.
+    /// for the motor, look input for the camera, trigger/aim input for the weapon and interact presses for the
+    /// <see cref="PlayerInteractor"/>.
     /// </summary>
     [DefaultExecutionOrder(-100)]
     public class PlayerInputReader : MonoBehaviour
@@ -21,6 +22,8 @@ namespace Vyrden.Player
         [SerializeField] private string _jumpActionName = "Jump";
         [SerializeField] private string _sprintActionName = "Sprint";
         [SerializeField] private string _attackActionName = "Attack";
+        [Tooltip("Uses the action's own interaction (the default asset requires holding the button).")]
+        [SerializeField] private string _interactActionName = "Interact";
 
         [Header("Targets")]
         [SerializeField] private CharacterMotor _motor;
@@ -28,6 +31,8 @@ namespace Vyrden.Player
         [SerializeField] private ThirdPersonCamera _camera;
         [Tooltip("Leave empty to use the first Weapon in children.")]
         [SerializeField] private Weapon _weapon;
+        [Tooltip("Leave empty to use the PlayerInteractor on this object.")]
+        [SerializeField] private PlayerInteractor _interactor;
 
         [Header("Cursor")]
         [Tooltip("Lock the cursor while playing. Escape releases it, clicking locks it again.")]
@@ -39,6 +44,7 @@ namespace Vyrden.Player
         private InputAction _jump;
         private InputAction _sprint;
         private InputAction _attack;
+        private InputAction _interact;
         private bool _cursorLockedThisFrame;
 
         private void Awake()
@@ -51,6 +57,11 @@ namespace Vyrden.Player
             if (_weapon == null)
             {
                 _weapon = GetComponentInChildren<Weapon>();
+            }
+
+            if (_interactor == null)
+            {
+                _interactor = GetComponent<PlayerInteractor>();
             }
 
             InputActionAsset actions = _actions != null ? _actions : InputSystem.actions;
@@ -68,6 +79,7 @@ namespace Vyrden.Player
             _jump = _actionMap.FindAction(_jumpActionName, true);
             _sprint = _actionMap.FindAction(_sprintActionName, true);
             _attack = _actionMap.FindAction(_attackActionName, true);
+            _interact = _actionMap.FindAction(_interactActionName, false);
         }
 
         private void Start()
@@ -104,6 +116,11 @@ namespace Vyrden.Player
             if (_motor != null)
             {
                 _motor.SetIntent(BuildMovementIntent(attackHeld));
+            }
+
+            if (_interactor != null && _interact != null && _interact.WasPerformedThisFrame())
+            {
+                _interactor.TryInteract();
             }
         }
 

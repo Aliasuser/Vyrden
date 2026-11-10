@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1c8dd6b98aa294ca72e1fe3310836e, type: 3}
+  m_Name: TeleporterEncounterSpawnSettings
+  m_EditorClassIdentifier: Vyrden.Enemies::Vyrden.Enemies.EnemySpawnSettings
+  _enemies:
+  - Prefab: {fileID: 6456547996621211689, guid: f74cf20247fed75439823c48e26d9368, type: 3}
+    Weight: 1
+  _initialDelay: 1
+  _spawnInterval: 2.5
+  _maxActiveEnemies: 6
+  _minDistanceFromPlayers: 8
+  _maxPlacementAttempts: 10
+  _retryDelay: 0.5
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _groundProbeHeight: 10
+  _groundProbeDistance: 30
+  _maxGroundSlope: 40
+  _maxHeightFromLocation: 1.5
+  _clearanceRadius: 0.5
+  _clearanceHeight: 1.8

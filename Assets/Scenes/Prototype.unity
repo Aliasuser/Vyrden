@@ -815,6 +815,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7181402357664126538, guid: 36a1cb5808bfb2c4599d1558720e70e1, type: 3}
   m_PrefabInstance: {fileID: 647229443}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &771526674
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1490633484703039800, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: _director
+      value: 
+      objectReference: {fileID: 1922106656}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748710708584544111, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872642080973050745, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: _container
+      value: 
+      objectReference: {fileID: 1226245953}
+    - target: {fileID: 7872642080973050745, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: _arenaBounds
+      value: 
+      objectReference: {fileID: 1635644615}
+    - target: {fileID: 8042271003188800896, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: m_Name
+      value: Teleporter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216102934805902678, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
+      propertyPath: _stageProgression
+      value: 
+      objectReference: {fileID: 1922106660}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d24547e83b5e44044818a1518dea0d79, type: 3}
 --- !u!1 &868272194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,6 +2575,7 @@ GameObject:
   - component: {fileID: 1922106657}
   - component: {fileID: 1922106656}
   - component: {fileID: 1922106658}
+  - component: {fileID: 1922106660}
   m_Layer: 0
   m_Name: Run
   m_TagString: Untagged
@@ -2565,6 +2639,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922106660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922106655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff7802dd9d647441b192bda58add942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.StageProgression
+  _stageCount: 5
+  _startingStage: 1
 --- !u!114 &2097697876 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6594403403344117406, guid: d16bd3eba04a3f842a0b659bc9e46277, type: 3}
@@ -2926,4 +3014,5 @@ SceneRoots:
   - {fileID: 1063914449}
   - {fileID: 1922106659}
   - {fileID: 1635644616}
+  - {fileID: 771526674}
   - {fileID: 1637519673}

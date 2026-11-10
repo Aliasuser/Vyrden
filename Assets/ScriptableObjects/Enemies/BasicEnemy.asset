@@ -22,4 +22,5 @@ MonoBehaviour:
   _attackCooldown: 1.5
   _attackWindup: 0.4
   _recoverDuration: 0.6
+  _experienceReward: 10
   _corpseDuration: 3

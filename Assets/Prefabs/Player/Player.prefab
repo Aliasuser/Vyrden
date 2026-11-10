@@ -517,6 +517,8 @@ GameObject:
   - component: {fileID: 2055156853771909035}
   - component: {fileID: 8163791461615062565}
   - component: {fileID: 6604185425224473901}
+  - component: {fileID: 4344955296912593205}
+  - component: {fileID: 8492222275906092354}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -683,4 +685,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df9a257f523fe48b9b25c6d4442d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Vyrden.Items::Vyrden.Items.ItemStatApplier
+  _stats: {fileID: 0}
+--- !u!114 &4344955296912593205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff163ebf7d14124cb2e481bd95f9c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.CharacterExperience
+  _curve: {fileID: 11400000, guid: 0d0d10f1f4ddcb845be2e770e1870cf1, type: 2}
+  _startingLevel: 1
+--- !u!114 &8492222275906092354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894598699552362781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f379c279483ed04ca7c85330d97597a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.LevelStatApplier
+  _growth: {fileID: 11400000, guid: c9045627bf8a9994b8c4fe019b21a408, type: 2}
   _stats: {fileID: 0}

@@ -2138,6 +2138,7 @@ GameObject:
   - component: {fileID: 1635644616}
   - component: {fileID: 1635644615}
   - component: {fileID: 1635644614}
+  - component: {fileID: 1635644617}
   m_Layer: 0
   m_Name: EnemySpawning
   m_TagString: Untagged
@@ -2203,6 +2204,19 @@ Transform:
   - {fileID: 1001119165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1635644617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635644613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363df864e444f2349ad222ed805ad1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Enemies::Vyrden.Enemies.DifficultySpawnScaler
+  _director: {fileID: 1922106656}
 --- !u!1 &1637519672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,6 +2490,92 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f74cf20247fed75439823c48e26d9368, type: 3}
+--- !u!1 &1922106655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922106659}
+  - component: {fileID: 1922106657}
+  - component: {fileID: 1922106656}
+  - component: {fileID: 1922106658}
+  m_Layer: 0
+  m_Name: Run
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922106656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922106655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb9485918273d84bb385c3e1a0a493b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.DifficultyDirector
+  _settings: {fileID: 11400000, guid: eabf218b01e3a574ca5283e1f8abb46c, type: 2}
+  _runTimer: {fileID: 1922106657}
+--- !u!114 &1922106657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922106655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f751c1d3cf5be46a15f0e720dbae4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Core::Vyrden.Core.RunTimer
+  _startOnStart: 1
+--- !u!114 &1922106658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922106655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dafc037a89a90e409f2cedb0936adb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.EndRunOnDeath
+  _runTimer: {fileID: 1922106657}
+  _health: {fileID: 2097697876}
+--- !u!4 &1922106659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922106655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2097697876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6594403403344117406, guid: d16bd3eba04a3f842a0b659bc9e46277, type: 3}
+  m_PrefabInstance: {fileID: 3922353602838485951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e1f09556727d54a8b1dc7aaad1d572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Combat::Vyrden.Combat.Health
 --- !u!1 &2110079001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,5 +2924,6 @@ SceneRoots:
   - {fileID: 868272195}
   - {fileID: 1871157830}
   - {fileID: 1063914449}
+  - {fileID: 1922106659}
   - {fileID: 1635644616}
   - {fileID: 1637519673}

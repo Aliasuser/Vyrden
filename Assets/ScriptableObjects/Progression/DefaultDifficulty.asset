@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9bf99e333bc34429fc6df78ff50683, type: 3}
+  m_Name: DefaultDifficulty
+  m_EditorClassIdentifier: Vyrden.Progression::Vyrden.Progression.DifficultySettings
+  _secondsPerInterval: 300
+  _coefficientPerInterval: 1
+  _compoundPerInterval: 1
+  _presetMultiplier: 1
+  _maxCoefficient: 0
+  _enemyHealthPerCoefficient: 0.3
+  _enemyDamagePerCoefficient: 0.2
+  _spawnRatePerCoefficient: 0.5
+  _minSpawnIntervalMultiplier: 0.3
+  _maxActivePerCoefficient: 2
+  _maxActiveBonusCap: 10
+  _tiers:
+  - _name: Easy
+    _minCoefficient: 1
+  - _name: Medium
+    _minCoefficient: 2
+  - _name: Hard
+    _minCoefficient: 3
+  - _name: Very Hard
+    _minCoefficient: 4
+  - _name: Extreme
+    _minCoefficient: 5
+  - _name: Insane
+    _minCoefficient: 6

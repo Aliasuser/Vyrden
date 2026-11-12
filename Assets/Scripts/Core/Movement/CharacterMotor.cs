@@ -8,7 +8,7 @@ namespace Vyrden.Movement
     /// Knows nothing about input devices or cameras, so players and AI can drive it the same way.
     /// </summary>
     [RequireComponent(typeof(CharacterController))]
-    public class CharacterMotor : MonoBehaviour
+    public class CharacterMotor : MonoBehaviour, IMovementSpeedReceiver
     {
         private const float MinMoveSqr = 0.0001f;
 

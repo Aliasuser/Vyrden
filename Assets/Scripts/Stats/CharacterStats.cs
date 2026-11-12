@@ -20,7 +20,7 @@ namespace Vyrden.Stats
         [SerializeField] private CharacterBaseStats _baseStats;
         [Tooltip("Defaults to the Health on this object.")]
         [SerializeField] private Health _health;
-        [Tooltip("Defaults to the CharacterMotor on this object.")]
+        [Tooltip("3D prototype motor. When empty, the first IMovementSpeedReceiver on this object (e.g. CharacterMotor2D) gets the move speed.")]
         [SerializeField] private CharacterMotor _motor;
         [Tooltip("Defaults to the first Weapon in children.")]
         [SerializeField] private Weapon _weapon;
@@ -28,6 +28,7 @@ namespace Vyrden.Stats
         [SerializeField] private ArmorDamageModifier _armor;
 
         private readonly List<StatModifier> _modifiers = new List<StatModifier>();
+        private IMovementSpeedReceiver _speedReceiver;
         private readonly StatModifierBuffer _buffer = new StatModifierBuffer();
         private readonly float[] _baseValues = new float[StatModifierBuffer.StatCount];
         private readonly float[] _values = new float[StatModifierBuffer.StatCount];
@@ -135,6 +136,8 @@ namespace Vyrden.Stats
                 _motor = GetComponent<CharacterMotor>();
             }
 
+            _speedReceiver = _motor != null ? _motor : GetComponent<IMovementSpeedReceiver>();
+
             if (_weapon == null)
             {
                 _weapon = GetComponentInChildren<Weapon>();
@@ -215,9 +218,9 @@ namespace Vyrden.Stats
                 }
             }
 
-            if (_motor != null)
+            if (_speedReceiver != null)
             {
-                _motor.SetSpeedMultiplier(_values[(int)StatType.MoveSpeed]);
+                _speedReceiver.SetSpeedMultiplier(_values[(int)StatType.MoveSpeed]);
             }
 
             if (_weapon != null)

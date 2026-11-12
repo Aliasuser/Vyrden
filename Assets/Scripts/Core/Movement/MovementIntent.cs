@@ -8,7 +8,10 @@ namespace Vyrden.Movement
     /// </summary>
     public struct MovementIntent
     {
-        /// <summary>World-space horizontal direction. Magnitude 0..1 (analog input keeps partial speed).</summary>
+        /// <summary>
+        /// World-space movement direction on the gameplay plane: XZ for the 3D <see cref="CharacterMotor"/>,
+        /// XY for <see cref="CharacterMotor2D"/>. Magnitude 0..1 (analog input keeps partial speed).
+        /// </summary>
         public Vector3 MoveDirection;
 
         /// <summary>True while the character wants to sprint.</summary>

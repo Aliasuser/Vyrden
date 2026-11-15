@@ -24,29 +24,10 @@ namespace Vyrden.Combat
         {
             var result = new ShotResult { Origin = context.MuzzlePosition, EndPoint = context.MuzzlePosition };
 
+            Vector2 origin = new Vector2(context.MuzzlePosition.x, context.MuzzlePosition.y);
             Vector2 direction = new Vector2(context.AimRay.direction.x, context.AimRay.direction.y);
-            if (_projectile == null || _projectile.Prefab == null || direction.sqrMagnitude < 1e-8f)
-            {
-                return result;
-            }
-
-            TeamMember team = context.Owner != null ? context.Owner.GetComponent<TeamMember>() : null;
-            Team side = team != null ? team.Team : Team.Neutral;
-
-            var launch = new ProjectileLaunch
-            {
-                Origin = new Vector2(context.MuzzlePosition.x, context.MuzzlePosition.y),
-                Direction = direction.normalized,
-                SpawnOffset = _spawnOffset,
-                Speed = _projectile.Speed,
-                Lifetime = _projectile.Lifetime,
-                Damage = CreateDamage(context, context.MuzzlePosition),
-                Owner = context.Owner,
-                Layer = ProjectileTargeting.GetLayer(side),
-                HitMask = ProjectileTargeting.GetHitMask(side),
-            };
-
-            ProjectilePool.Get(_projectile.Prefab).Launch(launch);
+            ProjectileLauncher.Launch(_projectile, origin, direction, _spawnOffset,
+                CreateDamage(context, context.MuzzlePosition), context.Owner);
             return result;
         }
     }

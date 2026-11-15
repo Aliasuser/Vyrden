@@ -71,7 +71,9 @@ namespace Vyrden.Combat
             _launch = launch;
             _launch.Direction = launch.Direction.sqrMagnitude > 0f ? launch.Direction.normalized : Vector2.down;
             _age = 0f;
-            _filter = new ContactFilter2D { useLayerMask = true, layerMask = launch.HitMask, useTriggers = false };
+            // Triggers count: trigger colliders on the Player / Enemy layers are body-sized hurtboxes, while
+            // the solid collider only covers the feet. Other trigger layers are never in a hit mask.
+            _filter = new ContactFilter2D { useLayerMask = true, layerMask = launch.HitMask, useTriggers = true };
 
             if (launch.Layer >= 0)
             {

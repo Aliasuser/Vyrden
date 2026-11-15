@@ -5,7 +5,8 @@ namespace Vyrden.Enemies
 {
     /// <summary>
     /// Root of an enemy. Applies its <see cref="EnemyDefinition"/> to the health and attack components
-    /// so tuning lives in one data asset.
+    /// so tuning lives in one data asset. The attack is any <see cref="IAttack"/> on the enemy (3D
+    /// <see cref="MeleeAttack"/>, or the 2D melee / ranged attacks), so enemy types differ by composition.
     /// </summary>
     [DefaultExecutionOrder(-50)]
     [RequireComponent(typeof(Health), typeof(TeamMember))]
@@ -15,12 +16,17 @@ namespace Vyrden.Enemies
         [SerializeField] private MeleeAttack _attack;
 
         private Health _health;
+        private IAttack _attackBehaviour;
         private float _healthMultiplier = 1f;
         private float _damageMultiplier = 1f;
 
         public EnemyDefinition Definition => _definition;
         public Health Health => _health != null ? _health : _health = GetComponent<Health>();
+        /// <summary>The 3D prototype's melee attack (null on 2D enemies).</summary>
         public MeleeAttack Attack => _attack;
+
+        /// <summary>The enemy's attack, whatever kind it is. Used by the 2D brain.</summary>
+        public IAttack AttackBehaviour => _attackBehaviour;
         public float HealthMultiplier => _healthMultiplier;
         public float DamageMultiplier => _damageMultiplier;
 
@@ -30,6 +36,8 @@ namespace Vyrden.Enemies
             {
                 _attack = GetComponentInChildren<MeleeAttack>();
             }
+
+            _attackBehaviour = _attack != null ? _attack : GetComponentInChildren<IAttack>();
 
             if (_definition == null)
             {
@@ -59,9 +67,9 @@ namespace Vyrden.Enemies
             Health.SetMaxHealth(_definition.MaxHealth * _healthMultiplier);
             Health.ResetHealth();
 
-            if (_attack != null)
+            if (_attackBehaviour != null)
             {
-                _attack.Configure(_definition.AttackDamage * _damageMultiplier, _definition.AttackRange,
+                _attackBehaviour.Configure(_definition.AttackDamage * _damageMultiplier, _definition.AttackRange,
                     _definition.AttackCooldown, _definition.AttackWindup);
             }
         }

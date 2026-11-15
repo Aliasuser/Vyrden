@@ -8,7 +8,7 @@ namespace Vyrden.Combat
     /// target is still in range and both sides are alive. Does not decide when to attack; AI calls
     /// <see cref="TryStartAttack"/>.
     /// </summary>
-    public class MeleeAttack : MonoBehaviour
+    public class MeleeAttack : MonoBehaviour, IAttack
     {
         private const float MaxHeightDifference = 2f;
 
@@ -61,6 +61,11 @@ namespace Vyrden.Combat
             _range = Mathf.Max(0.1f, range);
             _cooldown = Mathf.Max(0f, cooldown);
             _windup = Mathf.Max(0f, windup);
+        }
+
+        public bool CanReach(Transform target)
+        {
+            return IsInRange(target);
         }
 
         public bool IsInRange(Transform target, float extraRange = 0f)

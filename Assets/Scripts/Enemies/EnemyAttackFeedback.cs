@@ -3,18 +3,18 @@ using Vyrden.Combat;
 
 namespace Vyrden.Enemies
 {
-    /// <summary>Shows a placeholder telegraph while a melee attack winds up. Presentation only.</summary>
+    /// <summary>Shows a placeholder telegraph while an attack winds up. Presentation only.</summary>
     public class EnemyAttackFeedback : MonoBehaviour
     {
+        [Tooltip("3D prototype melee attack. Leave empty to use the first attack (IAttack) in children.")]
         [SerializeField] private MeleeAttack _attack;
         [SerializeField] private GameObject _windupIndicator;
 
+        private IAttack _source;
+
         private void Awake()
         {
-            if (_attack == null)
-            {
-                _attack = GetComponentInChildren<MeleeAttack>();
-            }
+            _source = _attack != null ? _attack : GetComponentInChildren<IAttack>();
 
             if (_windupIndicator != null)
             {
@@ -24,19 +24,19 @@ namespace Vyrden.Enemies
 
         private void OnEnable()
         {
-            if (_attack != null)
+            if (_source != null)
             {
-                _attack.AttackStarted += OnAttackStarted;
-                _attack.AttackFinished += OnAttackFinished;
+                _source.AttackStarted += OnAttackStarted;
+                _source.AttackFinished += OnAttackFinished;
             }
         }
 
         private void OnDisable()
         {
-            if (_attack != null)
+            if (_source != null)
             {
-                _attack.AttackStarted -= OnAttackStarted;
-                _attack.AttackFinished -= OnAttackFinished;
+                _source.AttackStarted -= OnAttackStarted;
+                _source.AttackFinished -= OnAttackFinished;
             }
         }
 

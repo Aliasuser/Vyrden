@@ -15,7 +15,7 @@ namespace Vyrden.Enemies
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(CharacterMotor2D))]
     [DisallowMultipleComponent]
-    public class EnemyBrain2D : MonoBehaviour
+    public class EnemyBrain2D : MonoBehaviour, IRoomBoundsReceiver
     {
         [Tooltip("Stop moving at this fraction of attack range so the enemy doesn't push into the target.")]
         [SerializeField, Range(0.1f, 1f)] private float _stopDistanceFactor = 0.8f;

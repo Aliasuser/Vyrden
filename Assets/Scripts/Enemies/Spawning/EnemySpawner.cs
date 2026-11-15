@@ -10,7 +10,7 @@ namespace Vyrden.Enemies
     /// keeps them on valid ground inside the arena and away from players, and tracks which are alive.
     /// Knows nothing about enemy AI; any prefab works.
     /// </summary>
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : MonoBehaviour, ISpawnedEnemyOwner
     {
         private const float GroundClearanceMargin = 0.05f;
         private const int MaxOverlapResults = 8;
@@ -282,7 +282,7 @@ namespace Vyrden.Enemies
             EnemySpawned?.Invoke(enemy);
         }
 
-        internal void NotifyRemoved(SpawnedEnemyTracker tracker)
+        void ISpawnedEnemyOwner.NotifyRemoved(SpawnedEnemyTracker tracker)
         {
             GameObject enemy = tracker.gameObject;
             int index = _activeEnemies.IndexOf(enemy);

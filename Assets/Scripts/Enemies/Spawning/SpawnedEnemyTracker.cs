@@ -4,20 +4,20 @@ using Vyrden.Combat;
 namespace Vyrden.Enemies
 {
     /// <summary>
-    /// Added by <see cref="EnemySpawner"/> to every enemy it creates. Tells the spawner exactly once when
-    /// the enemy dies or is destroyed, whichever comes first.
+    /// Added by a spawner (<see cref="EnemySpawner"/>, <see cref="EnemySpawner2D"/>) to every enemy it creates.
+    /// Tells the spawner exactly once when the enemy dies or is destroyed, whichever comes first.
     /// </summary>
     [AddComponentMenu("")]
     [DisallowMultipleComponent]
     public sealed class SpawnedEnemyTracker : MonoBehaviour
     {
-        private EnemySpawner _owner;
+        private ISpawnedEnemyOwner _owner;
         private Health _health;
         private bool _released;
 
-        public EnemySpawner Owner => _owner;
+        internal ISpawnedEnemyOwner Owner => _owner;
 
-        internal void Bind(EnemySpawner owner)
+        internal void Bind(ISpawnedEnemyOwner owner)
         {
             _owner = owner;
             _health = GetComponent<Health>();

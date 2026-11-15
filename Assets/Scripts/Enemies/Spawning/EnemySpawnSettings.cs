@@ -61,37 +61,7 @@ namespace Vyrden.Enemies
         /// <summary>Weighted random pick. Returns null when the table is empty or all weights are zero.</summary>
         public GameObject PickPrefab(System.Random random)
         {
-            float total = 0f;
-            for (int i = 0; i < _enemies.Count; i++)
-            {
-                if (_enemies[i].Prefab != null)
-                {
-                    total += _enemies[i].Weight;
-                }
-            }
-
-            if (total <= 0f)
-            {
-                return null;
-            }
-
-            float roll = (float)random.NextDouble() * total;
-            for (int i = 0; i < _enemies.Count; i++)
-            {
-                EnemySpawnEntry entry = _enemies[i];
-                if (entry.Prefab == null || entry.Weight <= 0f)
-                {
-                    continue;
-                }
-
-                roll -= entry.Weight;
-                if (roll < 0f)
-                {
-                    return entry.Prefab;
-                }
-            }
-
-            return null;
+            return EnemySpawnTable.Pick(_enemies, random);
         }
     }
 }

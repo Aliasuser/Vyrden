@@ -276,6 +276,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &4580718657959242378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4904421609818214044}
+  - component: {fileID: 1805296698548102169}
+  m_Layer: 6
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4904421609818214044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580718657959242378}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7599476026042776302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1805296698548102169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580718657959242378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef3eca651282ef40b2a5daa683e698e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vyrden.Combat::Vyrden.Combat.Weapon
+  _definition: {fileID: 11400000, guid: 92e3fd063cebac34c9d8ea21b8f627e4, type: 2}
+  _muzzle: {fileID: 3239090279833660845}
+  _ownerHealth: {fileID: 8971485061298411246}
 --- !u!1 &5792583140132405891
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +411,7 @@ Transform:
   m_Children:
   - {fileID: 5120955894663293107}
   - {fileID: 7485215837074609436}
+  - {fileID: 4904421609818214044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3863839696851280676
@@ -458,9 +506,11 @@ MonoBehaviour:
   _actionMapName: Player
   _moveActionName: Move
   _aimPointActionName: AimPoint
+  _attackActionName: Attack
   _motor: {fileID: 0}
   _aim: {fileID: 0}
   _aimCamera: {fileID: 0}
+  _weapon: {fileID: 0}
 --- !u!114 &8971485061298411246
 MonoBehaviour:
   m_ObjectHideFlags: 0

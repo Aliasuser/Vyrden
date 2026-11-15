@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "AimPoint",
+                    "type": "PassThrough",
+                    "id": "3ffde98d-72ef-41a6-b768-4547aa7513e6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
@@ -228,6 +237,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b28a0ac-f1ff-4dd9-8c61-9459a3d7f7c5",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "AimPoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

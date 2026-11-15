@@ -65,6 +65,16 @@ namespace Vyrden.Combat
             _aimRay = aimRay;
         }
 
+        /// <summary>
+        /// 2D version of <see cref="SetTrigger(bool, Ray)"/>: aims from the muzzle along
+        /// <paramref name="aimDirection"/> on the XY plane. Call every frame.
+        /// </summary>
+        public void SetTrigger(bool held, Vector2 aimDirection)
+        {
+            Vector3 origin = _muzzle != null ? _muzzle.position : transform.position;
+            SetTrigger(held, new Ray(origin, new Vector3(aimDirection.x, aimDirection.y, 0f)));
+        }
+
         /// <summary>Outgoing damage multiplier from items or buffs.</summary>
         public void SetDamageMultiplier(float multiplier)
         {

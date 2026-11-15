@@ -1,7 +1,9 @@
 {
     "name": "Vyrden.Combat",
     "rootNamespace": "Vyrden.Combat",
-    "references": [],
+    "references": [
+        "Vyrden.Core"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

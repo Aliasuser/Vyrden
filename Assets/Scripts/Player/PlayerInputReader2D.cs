@@ -11,7 +11,9 @@ namespace Vyrden.Player
     /// <see cref="MovementIntent"/> on the XY plane to the <see cref="CharacterMotor2D"/>. The camera is fixed,
     /// so W is always screen-up. Also reads the AimPoint action (pointer position), turns it into a point on
     /// the XY plane through the gameplay camera and hands it to <see cref="CharacterAim2D"/>; movement and aim
-    /// are separate and never feed each other. No input reaches either while the player is dead.
+    /// are separate and never feed each other. The Attack action is passed to the <see cref="Weapon"/> as a held
+    /// trigger along the aim direction (the weapon decides fire rate and hold-to-fire).
+    /// No input reaches movement, aim or weapon while the player is dead.
     /// The 3D prototype keeps using <see cref="PlayerInputReader"/>.
     /// </summary>
     [DefaultExecutionOrder(-100)]
@@ -23,6 +25,7 @@ namespace Vyrden.Player
         [SerializeField] private string _actionMapName = "Player";
         [SerializeField] private string _moveActionName = "Move";
         [SerializeField] private string _aimPointActionName = "AimPoint";
+        [SerializeField] private string _attackActionName = "Attack";
 
         [Header("Targets")]
         [Tooltip("Defaults to the CharacterMotor2D on this object.")]
@@ -31,10 +34,13 @@ namespace Vyrden.Player
         [SerializeField] private CharacterAim2D _aim;
         [Tooltip("Camera used to turn the pointer into a world point. Defaults to the MainCamera-tagged camera.")]
         [SerializeField] private Camera _aimCamera;
+        [Tooltip("Defaults to the first Weapon in children. Optional: without it the player cannot shoot.")]
+        [SerializeField] private Weapon _weapon;
 
         private InputActionMap _actionMap;
         private InputAction _move;
         private InputAction _aimPoint;
+        private InputAction _attack;
         private Health _health;
 
         private void Awake()
@@ -49,6 +55,11 @@ namespace Vyrden.Player
                 _aim = GetComponent<CharacterAim2D>();
             }
 
+            if (_weapon == null)
+            {
+                _weapon = GetComponentInChildren<Weapon>();
+            }
+
             _health = GetComponent<Health>();
 
             InputActionAsset actions = _actions != null ? _actions : InputSystem.actions;
@@ -61,6 +72,10 @@ namespace Vyrden.Player
             }
 
             _move = _actionMap.FindAction(_moveActionName, true);
+            if (_weapon != null)
+            {
+                _attack = _actionMap.FindAction(_attackActionName, true);
+            }
 
             if (_aim != null)
             {
@@ -88,6 +103,11 @@ namespace Vyrden.Player
             {
                 _motor.SetIntent(default);
             }
+
+            if (_weapon != null)
+            {
+                _weapon.SetTrigger(false, Vector2.zero);
+            }
         }
 
         private void Update()
@@ -99,6 +119,12 @@ namespace Vyrden.Player
             if (canAct)
             {
                 UpdateAim();
+            }
+
+            if (_weapon != null)
+            {
+                Vector2 aimDirection = _aim != null ? _aim.AimDirection : _motor.Facing;
+                _weapon.SetTrigger(canAct && _attack.IsPressed(), aimDirection);
             }
         }
 
